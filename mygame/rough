@@ -1,0 +1,33 @@
+
+ 
+ 
+var rec, mic ,file, voice
+var state=0;
+function setup(){
+
+  mic=new p5.AudioIn();
+  mic.start();
+  rec=new p5.SoundRecorder();
+  rec.setInput(mic);
+  file= new p5.SoundFile();
+
+}
+
+function can(){
+  userStartAudio();
+  if( state===0 && mic.enabled){
+    background(255,0,0);
+        rec.record(file);
+    state++;
+  }
+ else if (state===1){
+  background(0,255,0);
+    rec.stop();
+state++
+  }
+   else if (state===2){
+     file.play();
+  save ( file,"test" );
+  state=0;
+  }
+}
